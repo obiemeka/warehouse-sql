@@ -204,8 +204,8 @@ CREATE OR REPLACE VIEW v_sales_channels_revenue AS
   DELIMITER $$
   CREATE PROCEDURE input_to_distributors_purchase(IN purchase_date date, IN distributor_id INT, IN product_code varchar(20),IN sales_channel varchar(20), IN quantity int, IN unit_price float)
   BEGIN 
-  INSERT INTO distributors_id (purchase_date, distributor_id, product_code, sales_channel, quantity, unit_price) VALUES 
-  (IN_purchase_date, IN_distributor_id, IN_product_code, IN_sales_channel, IN_quantity, IN_unit_price);
+  INSERT INTO distributors_purchase (purchase_date, distributor_id, product_code, sales_channel, quantity, unit_price) VALUES 
+  (purchase_date, distributor_id, product_code, sales_channel, quantity, unit_price);
   END $$
   DELIMITER ;
   
@@ -214,7 +214,7 @@ CREATE OR REPLACE VIEW v_sales_channels_revenue AS
   CREATE PROCEDURE input_to_warehouse_distributors(IN distributor_id int, IN distributor_name varchar(11), distributor_country varchar(100))
   BEGIN 
   INSERT INTO warehouse_distributors (distributor_id, distributor_name, distributor_country) VALUES 
-  (IN_distributor_id, IN_distributor_name, IN_distributor_country);
+  (distributor_id, distributor_name, distributor_country);
   END $$
   DELIMITER ;
   
@@ -223,7 +223,7 @@ CREATE OR REPLACE VIEW v_sales_channels_revenue AS
   CREATE PROCEDURE input_to_warehouse_product(IN product_code varchar(20), IN product_name varchar(110), unit_price float, revenue int)
   BEGIN 
   INSERT INTO warehouse_product (product_code, product_name, unit_price, revenue) VALUES 
-  (IN_product_code, IN_product_name, IN_unit_price, revenue);
+  (product_code, product_name, unit_price, revenue);
   END $$
   DELIMITER ;
   
